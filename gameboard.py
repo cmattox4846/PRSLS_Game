@@ -36,6 +36,7 @@ class GameBoard:
                 player_2_score += 1
             if player_1_score == 2 or player_2_score == 2:
                 game_over = True
+        self.display_winner()
             
     def determine_winner(self, choice1, choice2):
         if choice1 == 'rock' and choice2 == 'scissors':
