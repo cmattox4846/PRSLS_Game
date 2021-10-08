@@ -1,7 +1,6 @@
 from human import Human
 from ai import AI
 
-
 class GameBoard:
     def __init__(self):
         pass
