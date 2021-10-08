@@ -2,8 +2,8 @@ from player import Player
 import random
 
 class AI(Player):
-    def __init__(self, name):
-        self.name= name
+    def __init__(self):
+        self.name
         super().__init__()
         
     
