@@ -1,7 +1,7 @@
 from gameboard import GameBoard
 
 new_game = GameBoard()
-# new_game.display_welcome()
+new_game.display_welcome()
 
 
 
