@@ -1,7 +1,6 @@
 from human import Human
 from ai import AI
 
-
 class GameBoard:
     def __init__(self):
         pass
@@ -113,7 +112,7 @@ class GameBoard:
         while game_over == False:
             choice1 = self.human_turn()
             choice2 = self.ai_turn()
-            if 
+            pass
 
 
     def human_turn(self):
