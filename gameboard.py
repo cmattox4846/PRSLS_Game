@@ -3,14 +3,16 @@ from ai import AI
 
 class GameBoard:
     def __init__(self):
-        pass
+       self.display_welcome()
+       
 
     def display_welcome(self):
         print("Welcome to RPSLS (Rock, Paper, Scissors, Lizard, Spock)")
         print("RPSLS is just like Rock Paper Scissors, each player has to choose any one variable Rock, Paper, Scissors, Lizard or Spock.\n Once the each player has chosen there vaiable, the choicces will be revealed and compared and winner will be decleared.\n The winneer will be decided by the chart below\n * Rock crushes Scissors  ---  Scissors cuts Paper --- Paper covers Rock --- Rock crushes Lizard --- Lizard poisons Spock \n Spock smashes Scissors --- Scissors decapitates Lizard --- Lizard eats Paper --- Paper disproves Spock --- Spock vaporizes Rock")
+        self.game_mode()
 
     def game_mode(self):
-        game_mode = int(input("1 - To play against a another human \n 2 - To Play against the computer"))
+        game_mode = int(input("1 - To play against a another human \n2 - To Play against the computer\n"))
         if game_mode == 1: 
             self.multiplayer_play_game()
         elif game_mode == 2:
@@ -36,8 +38,8 @@ class GameBoard:
                 player_2_score += 1
             if player_1_score == 2 or player_2_score == 2:
                 game_over = True
-        self.display_winner()
-            
+
+
     def determine_winner(self, choice1, choice2):
         if choice1 == 'rock' and choice2 == 'scissors':
             winner = print(f"{choice1} beats {choice2}")
@@ -107,19 +109,21 @@ class GameBoard:
 
         player_1_score = 0 
         player_2_score = 0 
-        game_over = False
-        choice1 = ""
-        choice2 = ""
-        while game_over == False:
-            choice1 = self.human_turn()
-            choice2 = self.ai_turn()
-            pass
-
-
-    def human_turn(self):
+        if player_1_score == 2 or player_2_score == 2:
+            self.display_winner
         name_input = input('Please enter your name: ')
         player1 = Human(name_input)
-        gesture_choice = player1.choose_gesture()
+        name_input = input('Please enter your name: ')
+        player2 = Human(name_input)
+        while player_1_score != 2 or player_2_score != 2:
+            self.human_turn(player1)
+            self.human_turn(player2)
+            
+
+
+    def human_turn(self, player):
+       
+        gesture_choice = player.choose_gesture()
         return gesture_choice
 
     def ai_turn(self):
