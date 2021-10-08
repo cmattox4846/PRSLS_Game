@@ -1,7 +1,7 @@
 from player import Player
 import random
 
-class Robot(Player):
+class AI(Player):
     def __init__(self, name):
         self.name= name
         super().__init__()
