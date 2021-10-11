@@ -20,7 +20,7 @@ class GameBoard:
            self.single_play_game()
         else:
             print("Please only pick 1 or 2!")
-            game_mode()
+            self.game_mode()
         
 
     def single_play_game(self):
@@ -35,6 +35,7 @@ class GameBoard:
         while game_over == False:
             choice1 = self.human_turn(player1)
             choice2 = self.ai_turn()
+            print(f'Player 1 has {choice1} VS Player 2 has {choice2}')
             winner = self.determine_winner(choice1,choice2)
             if winner == 1:
                 player_1_score += 1
@@ -113,9 +114,12 @@ class GameBoard:
             print(f"{choice2} beats {choice1}")
             return choice2
         elif choice2 == 'spock' and choice1== 'rock':
-            print(f"{choice2} beats {choice1}")
-            return choice2
-          
+            winner = print(f"{choice2} beats {choice1}")
+            return 2
+        else:
+            winner = print(f'Its a draw! You both choose {choice1}')
+
+         
         
         
 
@@ -133,13 +137,21 @@ class GameBoard:
         player2 = Human(name_input)
 
 
+        game_over = False
+        choice1 = ""
+        choice2 = ""
 
 
-        while player_1_score <= 2 or player_2_score <= 2:
+
+
+        while  game_over == False:
             print(f'{player1.name}, It is your turn.')
             player_one_choice= self.human_turn(player1)
             print(f'{player2.name}, It is your turn.')
             player_two_choice= self.human_turn(player2)
+
+            print(f'Player 1 has {choice1} VS Player 2 has {choice2}')
+
             winner= self.determine_winner(player_one_choice, player_two_choice)
             if winner == player_one_choice:
                 player_1_score += 1
@@ -148,8 +160,10 @@ class GameBoard:
 
             if player_1_score == 2:
                 self.display_winner(player1)
+                game_over = True
             elif player_2_score == 2:
                 self.display_winner(player2)
+                game_over = True
 
         
 
