@@ -1,5 +1,6 @@
 from human import Human
 from ai import AI
+import sys
 
 class GameBoard:
     def __init__(self):
@@ -23,22 +24,37 @@ class GameBoard:
         
 
     def single_play_game(self):
+        name_input = input('Please enter your name: ')
+        player1 = Human(name_input)
         player_1_score = 0 
         player_2_score = 0 
         game_over = False
         choice1 = ""
         choice2 = ""
         while game_over == False:
-            choice1 = self.human_turn()
+            choice1 = self.human_turn(player1)
             choice2 = self.ai_turn()
             winner = self.determine_winner(choice1,choice2)
             if winner == 1:
                 player_1_score += 1
+                print(f" Player 1 has a score of {player_1_score}")
+                print(f" Player 2 has a score of {player_2_score}")
             elif winner == 2:
                 player_2_score += 1
-            if player_1_score == 2 or player_2_score == 2:
+                print(f" Player 1 has a score of {player_1_score}")
+                print(f" Player 2 has a score of {player_2_score}")
+           
+            if player_1_score == 2:
+                self.display_winner(name_input)
                 game_over = True
+<<<<<<< HEAD
+=======
+            elif player_2_score == 2:
+                self.display_winner("Iron Man")
+>>>>>>> ba27c7d5d405faa053b93bb5662c655a0987aeb3
             
+
+
     def determine_winner(self, choice1, choice2):
         if choice1 == 'rock' and choice2 == 'scissors':
             print(f"{choice1} beats {choice2}")
@@ -110,9 +126,12 @@ class GameBoard:
         player_2_score = 0 
         if player_1_score == 2 or player_2_score == 2:
             self.display_winner
+<<<<<<< HEAD
         
         
         
+=======
+>>>>>>> ba27c7d5d405faa053b93bb5662c655a0987aeb3
         name_input = input('Please enter your name: ')
         player1 = Human(name_input)
         name_input = input('Please enter your name: ')
@@ -145,5 +164,12 @@ class GameBoard:
 
     
 
-    def display_winner(self):
+    def display_winner(self, name):
+        print(f"Congrats {name} you have won the game!")
+        answer = input('Would you like to play again?\n 1- Play Again\n 2- End Game\n Enter Choice: ')
+        if answer == "1":
+             self.display_welcome()
+        else:
+            sys.exit()
+
         pass
