@@ -9,7 +9,7 @@ class Human(Player):
         
     
     def choose_gesture(self):
-        user_input= int(input(' Please choose a number below\nPick 1 for rock\npick 2 for paper\n pick 3 for scissors\npick 4 for lizard\npick 5 for spock\n'))
+        user_input= int(input('Please choose a number below\nPick 1 for rock\npick 2 for paper\npick 3 for scissors\npick 4 for lizard\npick 5 for spock\n'))
         if user_input == 1:
             return 'rock'
         elif user_input== 2:
