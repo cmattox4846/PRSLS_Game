@@ -8,7 +8,7 @@ class AI(Player):
         
     
     def choose_gesture(self):
-        ai_input = random.randint(1, 5)
+        ai_input= random.randint(1, 5)
         if ai_input == 1:
             return 'rock'
         elif ai_input== 2:
