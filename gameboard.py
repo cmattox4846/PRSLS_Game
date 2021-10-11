@@ -115,7 +115,7 @@ class GameBoard:
         elif choice2 == 'spock' and choice1== 'rock':
             print(f"{choice2} beats {choice1}")
             return choice2
-        else: print('Draw')    
+          
         
         
 
