@@ -5,23 +5,34 @@ import math
 
 class GameBoard:
     def __init__(self):
-       self.display_welcome()
+        self.player_one = Human("player 1")
+        self.player_two = None
+        self.display_welcome()
        
+    def run_game(self):
+        self.display_welcome()
+        self.game_mode()
+
 
     def display_welcome(self):
         print("Welcome to RPSLS (Rock, Paper, Scissors, Lizard, Spock)")
-        print("RPSLS is just like Rock Paper Scissors, each player has to choose any one variable Rock, Paper, Scissors, Lizard or Spock.\n Once the each player has chosen there vaiable, the choicces will be revealed and compared and winner will be decleared.\n The winneer will be decided by the chart below\n * Rock crushes Scissors  ---  Scissors cuts Paper --- Paper covers Rock --- Rock crushes Lizard --- Lizard poisons Spock \n Spock smashes Scissors --- Scissors decapitates Lizard --- Lizard eats Paper --- Paper disproves Spock --- Spock vaporizes Rock")
-        self.game_mode()
+        print("RPSLS is just like Rock Paper Scissors, each player has to choose any one variable Rock, Paper, Scissors, Lizard or Spock.\n Once the each player has chosen there vaiable, the choicces will be revealed and compared and winner will be decleared.\n The winner will be decided by the chart below\n * Rock crushes Scissors  ---  Scissors cuts Paper --- Paper covers Rock --- Rock crushes Lizard --- Lizard poisons Spock \n Spock smashes Scissors --- Scissors decapitates Lizard --- Lizard eats Paper --- Paper disproves Spock --- Spock vaporizes Rock")
+       
 
     def game_mode(self):
         game_mode = int(input("1 - To play against a another human \n2 - To Play against the computer\n"))
         
         number_of_games = self.number_of_games()
-
+        player_one_name = input('\nPlease enter your name: ')
         if game_mode == 1: 
-            self.multiplayer_play_game(number_of_games)
+            player_two_name = input('\nPlease enter your name: ')
+            self.player_two = Human(player_two_name)
+            self.play_game(number_of_games,player_one_name)
+            
         elif game_mode == 2:
-           self.single_play_game(number_of_games)
+           self.player_two = AI("Iron Man")
+           self.play_game(number_of_games,player_one_name)
+           
         else:
             print("Please only pick 1 or 2!")
             self.game_mode()
@@ -32,39 +43,38 @@ class GameBoard:
 
         return amount_to_win
 
-    def single_play_game(self,number_of_games):
-        name_input = input('\nPlease enter your name: ')
-        player1 = Human(name_input)
-        player2 = AI('Iron Man')
+    def play_game(self,number_of_games,player_one_name):
+        
         player_1_score = 0 
         player_2_score = 0 
         game_over = False
         choice1 = ""
         choice2 = ""
+        player_2_name = self.player_two.name
         
         while game_over == False:
-            print(f'\n{player1.name}, It is your turn.')
-            choice1 = self.human_turn(player1)
-            print(f'\n{player2.name}, It is your turn.')
-            choice2 = self.ai_turn()
-            print(f'\nPlayer 1 has {choice1} VS Player 2 has {choice2}')
+            print(f'\n{player_one_name}, It is your turn.')
+            choice1 = self.player_one.choose_gesture()
+            print(f'\n{player_2_name}, It is your turn.')
+            choice2 = self.player_two.choose_gesture()
+            print(f'\n{player_one_name} has {choice1} VS {player_2_name} has {choice2}')
             winner = self.determine_winner(choice1,choice2)
             if winner == choice1:
                 player_1_score += 1
-                print(f"\n Player 1 has a score of {player_1_score}")
-                print(f" Player 2 has a score of {player_2_score}")
+                print(f"\n {player_one_name} has a score of {player_1_score}")
+                print(f" {player_2_name} has a score of {player_2_score}")
 
             elif winner == choice2:
                 player_2_score += 1
-                print(f" \nPlayer 1 has a score of {player_1_score}")
-                print(f" Player 2 has a score of {player_2_score}")
+                print(f"\n {player_one_name} has a score of {player_1_score}")
+                print(f" {player_2_name} has a score of {player_2_score}")
                 
 
             if player_1_score == number_of_games:
-                self.display_winner(name_input)
+                self.display_winner(player_one_name)
                 game_over = True
             elif player_2_score == number_of_games:
-                self.display_winner(player2)
+                self.display_winner(player_2_name)
                 game_over = True
                 
             
@@ -133,70 +143,12 @@ class GameBoard:
             print(f'Its a draw! You both choose {choice1}')
             
 
-         
-        
-        
-
-    def multiplayer_play_game(self, number_of_games):
-        player_1_score = 0 
-        player_2_score = 0 
-       
-        name_input = input('\nPlease enter your name: ')
-        player1 = Human(name_input)
-        name_input = input('\nPlease enter your name: ')
-        player2 = Human(name_input)
-        choice1 = ""
-        choice2 = ""
-        game_over = False
-       
-        while  game_over == False:
-            print(f'\n{player1.name}, It is your turn.')
-            choice1= self.human_turn(player1)
-            print(f'\n{player2.name}, It is your turn.')
-            choice2= self.human_turn(player2)
-
-            print(f'\n{player1.name} has {choice1} VS {player2.name} has {choice2}')
-
-            winner= self.determine_winner(choice1, choice2)
-            if winner == choice1:
-                player_1_score += 1
-                print(f" \nPlayer 1 has a score of {player_1_score}")
-                print(f"Player 2 has a score of {player_2_score}")
-            elif winner == choice2:
-                player_2_score += 1
-                print(f"\nPlayer 1 has a score of {player_1_score}")
-                print(f"Player 2 has a score of {player_2_score}")
-
-            if player_1_score == number_of_games:
-                self.display_winner(player1)
-                game_over = True
-            elif player_2_score == number_of_games:
-                self.display_winner(player2)
-                game_over = True
-
-        
-
-            
-            
-
-
-    def human_turn(self, player):
-       
-        gesture_choice = player.choose_gesture()
-        return gesture_choice
-
-    def ai_turn(self):
-        player2 = AI("Iron Man")
-        guesture_choice = player2.choose_gesture()
-        return guesture_choice
-
-    
 
     def display_winner(self, player):
         print(f"\nCongrats {player} you have won the game!")
         answer = input('\nWould you like to play again?\n 1- Play Again\n 2- End Game\n Enter Choice: ')
         if answer == "1":
-             self.display_welcome()
+             self.run_game()
         else:
             sys.exit()
         
