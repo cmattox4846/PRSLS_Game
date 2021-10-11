@@ -31,11 +31,6 @@ class GameBoard:
         while game_over == False:
             choice1 = self.human_turn()
             choice2 = self.ai_turn()
-<<<<<<< HEAD
-            
-
-
-=======
             winner = self.determine_winner(choice1,choice2)
             if winner == 1:
                 player_1_score += 1
@@ -43,69 +38,68 @@ class GameBoard:
                 player_2_score += 1
             if player_1_score == 2 or player_2_score == 2:
                 game_over = True
->>>>>>> ecc6947e7bedf0e8d6551b28e9922b0b0dd26b06
             
     def determine_winner(self, choice1, choice2):
         if choice1 == 'rock' and choice2 == 'scissors':
-            winner = print(f"{choice1} beats {choice2}")
-            return 1
+            print(f"{choice1} beats {choice2}")
+            return choice1
         elif choice1 == 'scissors' and choice2 == 'paper':
-            winner = print(f"{choice1} beats {choice2}")
-            return 1
+             print(f"{choice1} beats {choice2}")
+             return choice1
         elif choice1 == 'paper' and choice2== 'rock':
-            winner = print(f"{choice1} beats {choice2}")
-            return 1
+             print(f"{choice1} beats {choice2}")
+             return choice1
         elif choice1 == 'rock' and choice2== 'lizard':
-            winner = print(f"{choice1} beats {choice2}")
-            return 1
+            print(f"{choice1} beats {choice2}")
+            return choice1
         elif choice1 == 'lizard' and choice2== 'spock':
-            winner = print(f"{choice1} beats {choice2}")
-            return 1
+            print(f"{choice1} beats {choice2}")
+            return choice1
         elif choice1 == 'spock' and choice2== 'scissors':
-            winner = print(f"{choice1} beats {choice2}")
-            return 1
+            print(f"{choice1} beats {choice2}")
+            return choice1
         elif choice1 == 'scissors' and choice2== 'lizard':
-            winner = print(f"{choice1} beats {choice2}")
-            return 1
+            print(f"{choice1} beats {choice2}")
+            return choice1
         elif choice1 == 'lizard' and choice2== 'paper':
-            winner = print(f"{choice1} beats {choice2}")
-            return 1
+            print(f"{choice1} beats {choice2}")
+            return choice1
         elif choice1 == 'paper' and choice2== 'spock':
-            winner = print(f"{choice1} beats {choice2}")
-            return 1
+            print(f"{choice1} beats {choice2}")
+            return choice1
         elif choice1 == 'spock' and choice2== 'rock':
-            winner = print(f"{choice1} beats {choice2}")
-            return 1
+            print(f"{choice1} beats {choice2}")
+            return choice1
         elif choice2 == 'rock' and choice1 == 'scissors':
-            winner = print(f"{choice2} beats {choice1}")
-            return 2
+            print(f"{choice2} beats {choice1}")
+            return choice2
         elif choice2 == 'scissors' and choice1== 'paper':
-            winner = print(f"{choice2} beats {choice1}")
-            return 2
+            print(f"{choice2} beats {choice1}")
+            return choice2
         elif choice2 == 'paper' and choice1== 'rock':
-            winner = print(f"{choice2} beats {choice1}")
-            return 2
+            print(f"{choice2} beats {choice1}")
+            return choice2
         elif choice2 == 'rock' and choice1== 'lizard':
-            winner = print(f"{choice2} beats {choice1}")
-            return 2
+            print(f"{choice2} beats {choice1}")
+            return choice2
         elif choice2 == 'lizard' and choice1== 'spock':
-            winner = print(f"{choice2} beats {choice1}")
-            return 2
+            print(f"{choice2} beats {choice1}")
+            return choice2
         elif choice2 == 'spock' and choice1== 'scissors':
-            winner = print(f"{choice2} beats {choice1}")
-            return 2
+            print(f"{choice2} beats {choice1}")
+            return choice2
         elif choice2 == 'scissors' and choice1== 'lizard':
-            winner = print(f"{choice2} beats {choice1}")
-            return 2
+            print(f"{choice2} beats {choice1}")
+            return choice2
         elif choice2 == 'lizard' and choice1== 'paper':
-            winner = print(f"{choice2} beats {choice1}")
-            return 2
+            print(f"{choice2} beats {choice1}")
+            return choice2
         elif choice2 == 'paper' and choice1== 'spock':
-            winner = print(f"{choice2} beats {choice1}")
-            return 2
+            print(f"{choice2} beats {choice1}")
+            return choice2
         elif choice2 == 'spock' and choice1== 'rock':
-            winner = print(f"{choice2} beats {choice1}")
-            return 2
+            print(f"{choice2} beats {choice1}")
+            return choice2
         
         
 
@@ -114,31 +108,28 @@ class GameBoard:
 
         player_1_score = 0 
         player_2_score = 0 
-<<<<<<< HEAD
         if player_1_score == 2 or player_2_score == 2:
             self.display_winner
         
         
         
-=======
-        game_over = False
-        choice1 = ""
-        choice2 = ""
-        while game_over == False:
-            choice1 = self.human_turn()
-            choice2 = self.ai_turn()
-            pass
-
-
-    def human_turn(self):
->>>>>>> ecc6947e7bedf0e8d6551b28e9922b0b0dd26b06
         name_input = input('Please enter your name: ')
         player1 = Human(name_input)
         name_input = input('Please enter your name: ')
         player2 = Human(name_input)
         while player_1_score != 2 or player_2_score != 2:
-            self.human_turn(player1)
-            self.human_turn(player2)
+            player_one_choice= self.human_turn(player1)
+            player_two_choice= self.human_turn(player2)
+            winner= self.determine_winner(player_one_choice, player_two_choice)
+            if winner == player_one_choice:
+                player_1_score += 1
+            elif winner == player_two_choice:
+                player_2_score += 1
+        if player_1_score == 2 or player_2_score == 2:
+            self.display_winner
+        
+
+            
             
 
 
