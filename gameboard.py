@@ -20,7 +20,7 @@ class GameBoard:
            self.single_play_game()
         else:
             print("Please only pick 1 or 2!")
-            game_mode()
+            self.game_mode()
         
 
     def single_play_game(self):
@@ -34,6 +34,7 @@ class GameBoard:
         while game_over == False:
             choice1 = self.human_turn(player1)
             choice2 = self.ai_turn()
+            print(f'Player 1 has {choice1} VS Player 2 has {choice2}')
             winner = self.determine_winner(choice1,choice2)
             if winner == 1:
                 player_1_score += 1
@@ -113,6 +114,8 @@ class GameBoard:
         elif choice2 == 'spock' and choice1== 'rock':
             winner = print(f"{choice2} beats {choice1}")
             return 2
+        else:
+            winner = print(f'Its a draw! You both choose {choice1}')
         
         
 
